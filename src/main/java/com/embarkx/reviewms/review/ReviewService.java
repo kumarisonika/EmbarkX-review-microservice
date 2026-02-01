@@ -33,7 +33,7 @@ public class ReviewService {
     }
 
     Review getReview(Long reviewId){
-       return reviewRepository.getReferenceById(reviewId);
+       return reviewRepository.findById(reviewId).orElse(null);
     }
 
 

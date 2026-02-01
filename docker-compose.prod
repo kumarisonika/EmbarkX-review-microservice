@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  reviewms-app:
+    build: .
+    container_name: reviewms-app
+    ports:
+      - "8083:8083"
+    depends_on:
+      - reviewms-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://reviewms-db:5432/reviewmsdb
+      SPRING_DATASOURCE_USERNAME: reviewms_user
+      SPRING_DATASOURCE_PASSWORD: reviewms_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  reviewms-db:
+    image: postgres:15
+    container_name: reviewms-db
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: reviewmsdb
+      POSTGRES_USER: reviewms_user
+      POSTGRES_PASSWORD: reviewms_pass

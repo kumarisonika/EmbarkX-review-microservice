@@ -1,0 +1,14 @@
+# 1️⃣ Base image: Java 17
+FROM eclipse-temurin:17-jdk
+
+# 2️⃣ Working directory inside container
+WORKDIR /app
+
+# 3️⃣ Copy the Spring Boot JAR
+COPY target/reviewms-0.0.1-SNAPSHOT.jar app.jar
+
+# 4️⃣ Expose reviewms port
+EXPOSE 8083
+
+# 5️⃣ Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
